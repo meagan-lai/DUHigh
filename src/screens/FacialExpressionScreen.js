@@ -1,12 +1,20 @@
 import React from "react";
-import { Button, View, Text, StyleSheet } from "react-native";
+import { Button, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { RNCamera } from "react-native-camera";
 
-export default class FFacialExpressionScreen extends React.Component {
+export default class FacialExpressionScreen extends React.Component {
+  takePicture = async function() {
+    if (this.camera) {
+      const options = { quality: 0.5, base64: true };
+      const data = await this.camera.takePictureAsync(options);
+      console.log(data.uri);
+    }
+  };
+
   render() {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Facial Expresstion Screen</Text>
+      <View style={styles.container}>
+        <Text>FFacial Expresstion Screen</Text>
         <Button
           title="Go to Pupil Screen"
           onPress={() => this.props.navigation.navigate("Pupil")}
@@ -26,14 +34,39 @@ export default class FFacialExpressionScreen extends React.Component {
             console.log(barcodes);
           }}
         />
+        <View
+          style={{ flex: 0, flexDirection: "row", justifyContent: "center" }}
+        >
+          <TouchableOpacity
+            onPress={this.takePicture.bind(this)}
+            style={styles.capture}
+          >
+            <Text style={{ fontSize: 14 }}> SNAP </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
 }
+
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: "black"
+  },
   preview: {
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center"
+  },
+  capture: {
+    flex: 0,
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    padding: 15,
+    paddingHorizontal: 20,
+    alignSelf: "center",
+    margin: 20
   }
 });
