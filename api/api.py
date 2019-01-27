@@ -3,16 +3,21 @@ import httplib
 import urllib
 import base64
 import json
+import math
 
 app = Flask(__name__)
 
+test1Output = 0
+pupilSize1 = 1
+pupilSize2 = 1
 
-@app.route('/xax')
+
+@app.route('/')
 def api_root():
     return 'Welcome'
 
 
-@app.route("/face", methods=['GET', 'POST'])
+@app.route("/face", methods=['POST'])
 def facialExpressionTest():
 
     if request.method == 'POST':
@@ -46,12 +51,14 @@ def facialExpressionTest():
                 output[jsonData["predictions"][1]["tagName"]
                        ] = jsonData["predictions"][1]["probability"]
                 outputJson = json.dumps(output)
-                return outputJson+"\n"
+
+                test1Output = outputJson["high"]
+                return outputJson
             except Exception as e:
                 print(e)
 
     # request.method == 'GET'
-    return "get Got\n"
+    return
 
 
 @app.route("/pupil1", methods=['POST'])
@@ -83,17 +90,22 @@ def pupilSize1Test():
                 jsonData = json.loads(data)
                 conn.close()
                 output = {}
-                output[jsonData["predictions"][0]["tagName"]
-                       ] = jsonData["predictions"][0]["probability"]
-                output[jsonData["predictions"][1]["tagName"]
-                       ] = jsonData["predictions"][1]["probability"]
-                outputJson = json.dumps(output)
-                return outputJson+"\n"
+                # x1 coordinate
+                x1 = jsonData["face"]["eyeLeft"][0]["x"]
+                # x2 coordinate
+                x2 = jsonData["face"]["eyeLeft"][1]["x"]
+                # get radius of pupil for area
+                r = (x2-x1)/2
+
+                area = math.pi * r * r
+
+                pupilSize1 = area
+                return "Success"
             except Exception as e:
                 print(e)
+                return "error"
 
-    # request.method == 'GET'
-    return "get Got\n"
+    return
 
 
 @app.route("/pupil2", methods=['POST'])
@@ -125,17 +137,37 @@ def pupilSize2Test():
                 jsonData = json.loads(data)
                 conn.close()
                 output = {}
-                output[jsonData["predictions"][0]["tagName"]
-                       ] = jsonData["predictions"][0]["probability"]
-                output[jsonData["predictions"][1]["tagName"]
-                       ] = jsonData["predictions"][1]["probability"]
-                outputJson = json.dumps(output)
-                return outputJson+"\n"
+                # x1 coordinate
+                x1 = jsonData["face"]["eyeLeft"][0]["x"]
+                # x2 coordinate
+                x2 = jsonData["face"]["eyeLeft"][1]["x"]
+                # get radius of pupil for area
+                r = (x2-x1)/2
+
+                area = math.pi * r * r
+
+                pupilSize1 = area
+                return "Success"
             except Exception as e:
                 print(e)
+                return "error"
 
     # request.method == 'GET'
-    return "get Got\n"
+    return
+
+
+@app.route("/results", methods=['GET'])
+def results():
+    test1 = test1Output
+    test2 = calcPupilChange(pupilSize1, pupilSize2)
+
+    # test 3 is gotten through node.js api
+    return test1+test2
+
+
+def calcPupilChange(p1, p2):
+    # average pupil changes to 60% of its size instantly to direct light
+    return p2/p1-0.6
 
 
 if __name__ == "__main__":
