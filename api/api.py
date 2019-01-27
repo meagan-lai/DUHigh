@@ -146,7 +146,7 @@ def pupilSize2Test():
 
                 area = math.pi * r * r
 
-                pupilSize1 = area
+                pupilSize2 = area
                 return "Success"
             except Exception as e:
                 print(e)
