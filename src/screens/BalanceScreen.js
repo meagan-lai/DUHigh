@@ -69,9 +69,7 @@ export default class BalanceScreen extends React.Component {
         flashMode={this.state.flash}
         autoFocus={this.state.autoFocus}
         permissionDialogTitle={"Permission to use camera"}
-        permissionDialogMessage={
-          "We need your permission to use your camera phone"
-        }
+        permissionDialogMessage={"We need your permission to use your camera phone"}
       >
         <View
           style={{
@@ -81,10 +79,7 @@ export default class BalanceScreen extends React.Component {
             justifyContent: "space-around"
           }}
         >
-          <TouchableOpacity
-            style={styles.flipButton}
-            onPress={this.toggleFlash.bind(this)}
-          >
+          <TouchableOpacity style={styles.flipButton} onPress={this.toggleFlash.bind(this)}>
             <Text style={styles.flipText}> FLASH: {this.state.flash} </Text>
           </TouchableOpacity>
         </View>
@@ -106,9 +101,7 @@ export default class BalanceScreen extends React.Component {
                 backgroundColor: this.state.isRecording ? "white" : "darkred"
               }
             ]}
-            onPress={
-              this.state.isRecording ? () => {} : this.takeVideo.bind(this)
-            }
+            onPress={this.state.isRecording ? () => {} : this.takeVideo.bind(this)}
           >
             {this.state.isRecording ? (
               <Text style={styles.flipText}> ☕ </Text>
@@ -125,10 +118,7 @@ export default class BalanceScreen extends React.Component {
     return (
       <View style={styles.container}>
         {this.renderCamera()}
-        <Button
-          title="Balance"
-          onPress={() => this.props.navigation.navigate("Results")}
-        />
+        <Button title="Balance" onPress={() => this.props.navigation.navigate("Results")} />
       </View>
     );
   }

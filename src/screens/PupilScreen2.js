@@ -5,17 +5,17 @@ import { RNCamera } from "react-native-camera";
 import axios from "react-native-axios";
 import RNFS from "react-native-fs";
 
-export default class FacialExpressionScreen extends React.Component {
+export default class PupilScreen2 extends React.Component {
   static navigationOptions = {
     headerLeft: null
   };
   constructor(props) {
     super(props);
     this.state = {
-      imageUri: null
+      imageUri: null,
+      flash: "on"
     };
   }
-
   takePicture = async function() {
     if (this.camera) {
       const options = { quality: 0.5, base64: true };
@@ -35,7 +35,7 @@ export default class FacialExpressionScreen extends React.Component {
           }}
           style={styles.preview}
           type={RNCamera.Constants.Type.back}
-          flashMode={RNCamera.Constants.FlashMode.off}
+          flashMode={this.state.flash}
           permissionDialogTitle={"Permission to use camera"}
           permissionDialogMessage={"We need your permission to use your camera phone"}
         >
@@ -48,10 +48,7 @@ export default class FacialExpressionScreen extends React.Component {
       return null;
     }
   }
-
   passBlob(blob) {
-    this.props.navigation.navigate("Pupil");
-    console.log(blob);
     //Pass blob to API
     axios({
       method: "post",
@@ -69,8 +66,8 @@ export default class FacialExpressionScreen extends React.Component {
       .catch(error => {
         console.log(error);
       });
+    this.props.navigation.navigate("Balance");
   }
-
   renderImage() {
     let blob = "";
     RNFS.readFile(this.state.imageUri, "base64").then(result => (blob = result));
@@ -91,8 +88,8 @@ export default class FacialExpressionScreen extends React.Component {
     return (
       <View style={styles.container}>
         {this.state.imageUri ? this.renderImage() : this.renderCamera()}
-        <Text>Facial Expresstion Screen</Text>
-        <Button title="Go to Pupil Screen" onPress={() => this.props.navigation.navigate("Pupil")} />
+        <Text>Pupil Screen</Text>
+        <Button title="Go to Balance Screen" onPress={() => this.props.navigation.navigate("Balance")} />
       </View>
     );
   }
@@ -134,7 +131,7 @@ const styles = StyleSheet.create({
   next: {
     position: "absolute",
     right: 20,
-    bottom: 0,
+    top: 20,
     backgroundColor: "transparent",
     color: "#FFF",
     fontWeight: "600",

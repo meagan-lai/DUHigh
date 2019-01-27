@@ -1,11 +1,10 @@
-from flask import request, url_for
-from flask_api import FlaskAPI, status, exceptions
+from flask import Flask, request, url_for
 import httplib
 import urllib
 import base64
 import json
 
-app = FlaskAPI(__name__)
+app = Flask(__name__)
 
 
 @app.route('/xax')
@@ -47,7 +46,7 @@ def facialExpressionTest():
                 output[jsonData["predictions"][1]["tagName"]
                        ] = jsonData["predictions"][1]["probability"]
                 outputJson = json.dumps(output)
-                return outputJson+"\n", status.HTTP_201_CREATED
+                return outputJson+"\n"
             except Exception as e:
                 print(e)
 

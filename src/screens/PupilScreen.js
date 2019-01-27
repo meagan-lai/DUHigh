@@ -1,15 +1,9 @@
 import React from "react";
-import {
-  Button,
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  Dimensions
-} from "react-native";
+import { Button, View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from "react-native";
 import { navigationOptions } from "react-navigation";
 import { RNCamera } from "react-native-camera";
+import axios from "react-native-axios";
+import RNFS from "react-native-fs";
 
 export default class PupilScreen extends React.Component {
   static navigationOptions = {
@@ -18,10 +12,10 @@ export default class PupilScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageUri: null
+      imageUri: null,
+      flash: "off"
     };
   }
-
   takePicture = async function() {
     if (this.camera) {
       const options = { quality: 0.5, base64: true };
@@ -41,19 +35,12 @@ export default class PupilScreen extends React.Component {
           }}
           style={styles.preview}
           type={RNCamera.Constants.Type.back}
-          flashMode={RNCamera.Constants.FlashMode.off}
+          flashMode={this.state.flash}
           permissionDialogTitle={"Permission to use camera"}
-          permissionDialogMessage={
-            "We need your permission to use your camera phone"
-          }
+          permissionDialogMessage={"We need your permission to use your camera phone"}
         >
-          <View
-            style={{ flex: 0, flexDirection: "row", justifyContent: "center" }}
-          >
-            <TouchableOpacity
-              onPress={this.takePicture.bind(this)}
-              style={styles.capture}
-            />
+          <View style={{ flex: 0, flexDirection: "row", justifyContent: "center" }}>
+            <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture} />
           </View>
         </RNCamera>
       );
@@ -61,21 +48,36 @@ export default class PupilScreen extends React.Component {
       return null;
     }
   }
-
+  passBlob(blob) {
+    //Pass blob to API
+    axios({
+      method: "post",
+      url: "http://ryannourbaran.pythonanywhere.com/face",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": true,
+        "Content-Type": "application/octet-stream"
+      },
+      data: blob
+    })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    this.props.navigation.navigate("Pupil2");
+  }
   renderImage() {
+    let blob = "";
+    RNFS.readFile(this.state.imageUri, "base64").then(result => (blob = result));
     return (
       <View>
         <Image source={{ uri: this.state.imageUri }} style={styles.preview} />
-        <Text
-          style={styles.cancel}
-          onPress={() => this.setState({ imageUri: null })}
-        >
+        <Text style={styles.cancel} onPress={() => this.setState({ imageUri: null })}>
           Cancel
         </Text>
-        <Text
-          style={styles.next}
-          onPress={() => this.props.navigation.navigate("Test")}
-        >
+        <Text style={styles.next} onPress={() => this.passBlob(blob)}>
           Next
         </Text>
       </View>
@@ -87,10 +89,7 @@ export default class PupilScreen extends React.Component {
       <View style={styles.container}>
         {this.state.imageUri ? this.renderImage() : this.renderCamera()}
         <Text>Pupil Screen</Text>
-        <Button
-          title="Go to Test Screen"
-          onPress={() => this.props.navigation.navigate("Balance")}
-        />
+        <Button title="Go to Balance Screen" onPress={() => this.props.navigation.navigate("Pupil2")} />
       </View>
     );
   }
