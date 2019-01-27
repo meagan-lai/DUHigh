@@ -29,7 +29,9 @@ export default class HomeScreen extends React.Component {
         {this.image}
         <TouchableOpacity
           style={{ alignItems: "center", bottom: 28 }}
-          onPress={() => this.props.navigation.navigate("FacialExpression")}
+          onPress={() =>
+            this.props.navigation.navigate("ExpressionInstructions")
+          }
         >
           <View style={styles.button}>
             <Text style={styles.text}>Get Started</Text>
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   overlay: {
-    backgroundColor: "#010a00",
+    backgroundColor: "#0a1610",
     width: "100%",
     height: "100%",
     alignContent: "center"

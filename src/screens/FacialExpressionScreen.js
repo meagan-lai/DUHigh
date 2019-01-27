@@ -1,5 +1,13 @@
 import React from "react";
-import { Button, View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from "react-native";
+import {
+  Button,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Dimensions
+} from "react-native";
 import { navigationOptions } from "react-navigation";
 import { RNCamera } from "react-native-camera";
 import axios from "react-native-axios";
@@ -37,10 +45,17 @@ export default class FacialExpressionScreen extends React.Component {
           type={RNCamera.Constants.Type.back}
           flashMode={RNCamera.Constants.FlashMode.off}
           permissionDialogTitle={"Permission to use camera"}
-          permissionDialogMessage={"We need your permission to use your camera phone"}
+          permissionDialogMessage={
+            "We need your permission to use your camera phone"
+          }
         >
-          <View style={{ flex: 0, flexDirection: "row", justifyContent: "center" }}>
-            <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture} />
+          <View
+            style={{ flex: 0, flexDirection: "row", justifyContent: "center" }}
+          >
+            <TouchableOpacity
+              onPress={this.takePicture.bind(this)}
+              style={styles.capture}
+            />
           </View>
         </RNCamera>
       );
@@ -50,7 +65,7 @@ export default class FacialExpressionScreen extends React.Component {
   }
 
   passBlob(blob) {
-    this.props.navigation.navigate("Pupil");
+    this.props.navigation.navigate("PupilInstructions");
     console.log(blob);
     //Pass blob to API
     axios({
@@ -73,11 +88,16 @@ export default class FacialExpressionScreen extends React.Component {
 
   renderImage() {
     let blob = "";
-    RNFS.readFile(this.state.imageUri, "base64").then(result => (blob = result));
+    RNFS.readFile(this.state.imageUri, "base64").then(
+      result => (blob = result)
+    );
     return (
       <View>
         <Image source={{ uri: this.state.imageUri }} style={styles.preview} />
-        <Text style={styles.cancel} onPress={() => this.setState({ imageUri: null })}>
+        <Text
+          style={styles.cancel}
+          onPress={() => this.setState({ imageUri: null })}
+        >
           Cancel
         </Text>
         <Text style={styles.next} onPress={() => this.passBlob(blob)}>
@@ -91,8 +111,6 @@ export default class FacialExpressionScreen extends React.Component {
     return (
       <View style={styles.container}>
         {this.state.imageUri ? this.renderImage() : this.renderCamera()}
-        <Text>Facial Expresstion Screen</Text>
-        <Button title="Go to Pupil Screen" onPress={() => this.props.navigation.navigate("Pupil")} />
       </View>
     );
   }
@@ -123,8 +141,8 @@ const styles = StyleSheet.create({
 
   cancel: {
     position: "absolute",
-    left: 20,
-    top: 20,
+    left: 30,
+    bottom: 30,
     backgroundColor: "transparent",
     color: "#FFF",
     fontWeight: "600",
@@ -133,8 +151,8 @@ const styles = StyleSheet.create({
 
   next: {
     position: "absolute",
-    right: 20,
-    bottom: 0,
+    right: 30,
+    bottom: 30,
     backgroundColor: "transparent",
     color: "#FFF",
     fontWeight: "600",

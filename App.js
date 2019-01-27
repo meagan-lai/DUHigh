@@ -8,13 +8,19 @@ import PupilScreen2 from "./src/screens/PupilScreen2";
 import BalanceScreen from "./src/screens/BalanceScreen";
 import ResultsScreen from "./src/screens/ResultsScreen";
 import TestScreen from "./src/screens/TestScreen";
+import Instructions1 from "./src/screens/Instructions1";
+import Instructions2 from "./src/screens/Instructions2";
+import Instructions3 from "./src/screens/Instructions3";
 
 const RootStack = createSwitchNavigator(
   {
     Home: HomeScreen,
+    ExpressionInstructions: Instructions1,
     FacialExpression: FacialExpressionScreen,
+    PupilInstructions: Instructions2,
     Pupil: PupilScreen,
     Pupil2: PupilScreen2,
+    BalanceInstructions: Instructions3,
     Balance: BalanceScreen,
     Results: ResultsScreen,
     Test: TestScreen

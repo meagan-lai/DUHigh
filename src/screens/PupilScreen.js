@@ -1,5 +1,13 @@
 import React from "react";
-import { Button, View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from "react-native";
+import {
+  Button,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Dimensions
+} from "react-native";
 import { navigationOptions } from "react-navigation";
 import { RNCamera } from "react-native-camera";
 import axios from "react-native-axios";
@@ -37,10 +45,17 @@ export default class PupilScreen extends React.Component {
           type={RNCamera.Constants.Type.back}
           flashMode={this.state.flash}
           permissionDialogTitle={"Permission to use camera"}
-          permissionDialogMessage={"We need your permission to use your camera phone"}
+          permissionDialogMessage={
+            "We need your permission to use your camera phone"
+          }
         >
-          <View style={{ flex: 0, flexDirection: "row", justifyContent: "center" }}>
-            <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture} />
+          <View
+            style={{ flex: 0, flexDirection: "row", justifyContent: "center" }}
+          >
+            <TouchableOpacity
+              onPress={this.takePicture.bind(this)}
+              style={styles.capture}
+            />
           </View>
         </RNCamera>
       );
@@ -70,11 +85,16 @@ export default class PupilScreen extends React.Component {
   }
   renderImage() {
     let blob = "";
-    RNFS.readFile(this.state.imageUri, "base64").then(result => (blob = result));
+    RNFS.readFile(this.state.imageUri, "base64").then(
+      result => (blob = result)
+    );
     return (
       <View>
         <Image source={{ uri: this.state.imageUri }} style={styles.preview} />
-        <Text style={styles.cancel} onPress={() => this.setState({ imageUri: null })}>
+        <Text
+          style={styles.cancel}
+          onPress={() => this.setState({ imageUri: null })}
+        >
           Cancel
         </Text>
         <Text style={styles.next} onPress={() => this.passBlob(blob)}>
@@ -89,10 +109,6 @@ export default class PupilScreen extends React.Component {
       <View style={styles.container}>
         {this.state.imageUri ? this.renderImage() : this.renderCamera()}
         <Text>Pupil Screen</Text>
-        <Button
-          title="Go to pupil with flash Screen"
-          onPress={() => this.props.navigation.navigate("Pupil2")}
-        />
       </View>
     );
   }

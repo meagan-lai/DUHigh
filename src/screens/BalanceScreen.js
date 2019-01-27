@@ -11,19 +11,8 @@ const flashModeOrder = {
   torch: "off"
 };
 
-const wbOrder = {
-  auto: "sunny",
-  sunny: "cloudy",
-  cloudy: "shadow",
-  shadow: "fluorescent",
-  fluorescent: "incandescent",
-  incandescent: "auto"
-};
-
 export default class BalanceScreen extends React.Component {
   state = {
-    flash: "off",
-
     recordOptions: {
       mute: false,
       maxDuration: 5,
@@ -47,7 +36,8 @@ export default class BalanceScreen extends React.Component {
         if (promise) {
           this.setState({ isRecording: true });
           const data = await promise;
-          this.setState({ isRecording: false });
+
+          setTimeout(this.setState({ isRecording: false }), 10000);
           console.warn(data);
         }
       } catch (e) {
@@ -69,14 +59,16 @@ export default class BalanceScreen extends React.Component {
         flashMode={this.state.flash}
         autoFocus={this.state.autoFocus}
         permissionDialogTitle={"Permission to use camera"}
-        permissionDialogMessage={"We need your permission to use your camera phone"}
+        permissionDialogMessage={
+          "We need your permission to use your camera phone"
+        }
       >
         <View
           style={{
-            flex: 0.5,
+            flex: 1,
             backgroundColor: "transparent",
             flexDirection: "row",
-            justifyContent: "space-around"
+            justifyContent: "center"
           }}
         />
 
@@ -85,7 +77,7 @@ export default class BalanceScreen extends React.Component {
             flex: 0.1,
             backgroundColor: "transparent",
             flexDirection: "row",
-            alignSelf: "flex-end"
+            alignSelf: "center"
           }}
         >
           <TouchableOpacity
@@ -97,10 +89,12 @@ export default class BalanceScreen extends React.Component {
                 backgroundColor: this.state.isRecording ? "white" : "darkred"
               }
             ]}
-            onPress={this.state.isRecording ? () => {} : this.takeVideo.bind(this)}
+            onPress={
+              this.state.isRecording ? () => {} : this.takeVideo.bind(this)
+            }
           >
             {this.state.isRecording ? (
-              <Text style={styles.flipText}> ☕ </Text>
+              <Text style={styles.flipText}> STOP </Text>
             ) : (
               <Text style={styles.flipText}> REC </Text>
             )}
@@ -114,7 +108,10 @@ export default class BalanceScreen extends React.Component {
     return (
       <View style={styles.container}>
         {this.renderCamera()}
-        <Button title="Balance" onPress={() => this.props.navigation.navigate("Results")} />
+        <Button
+          title="Get Results!"
+          onPress={() => this.props.navigation.navigate("Results")}
+        />
       </View>
     );
   }
