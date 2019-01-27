@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   next: {
     position: "absolute",
     right: 20,
-    top: 20,
+    bottom: 0,
     backgroundColor: "transparent",
     color: "#FFF",
     fontWeight: "600",

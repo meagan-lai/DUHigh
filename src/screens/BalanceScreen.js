@@ -78,11 +78,7 @@ export default class BalanceScreen extends React.Component {
             flexDirection: "row",
             justifyContent: "space-around"
           }}
-        >
-          <TouchableOpacity style={styles.flipButton} onPress={this.toggleFlash.bind(this)}>
-            <Text style={styles.flipText}> FLASH: {this.state.flash} </Text>
-          </TouchableOpacity>
-        </View>
+        />
 
         <View
           style={{
