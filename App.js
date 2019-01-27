@@ -1,6 +1,10 @@
 import React from "react";
 import { Button, View, Text } from "react-native";
-import { createStackNavigator, createAppContainer } from "react-navigation"; // Version can be specified in package.json
+import {
+  createStackNavigator,
+  createAppContainer,
+  navigationOptions
+} from "react-navigation"; // Version can be specified in package.json
 import HomeScreen from "./src/screens/HomeScreen";
 import FacialExpressionScreen from "./src/screens/FacialExpressionScreen";
 import PupilScreen from "./src/screens/PupilScreen";

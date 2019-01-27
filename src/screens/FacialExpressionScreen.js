@@ -8,10 +8,14 @@ import {
   Image,
   Dimensions
 } from "react-native";
+import { navigationOptions } from "react-navigation";
 import { RNCamera } from "react-native-camera";
 import RNFS from "react-native-fs";
 
 export default class FacialExpressionScreen extends React.Component {
+  static navigationOptions = {
+    headerLeft: null
+  };
   constructor(props) {
     super(props);
     this.state = {
