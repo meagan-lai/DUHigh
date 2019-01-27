@@ -23,7 +23,7 @@ export default class HomeScreen extends React.Component {
       <View style={styles.overlay}>
         {this.image}
         <TouchableOpacity
-          style={{ alignItems: "center" }}
+          style={{ alignItems: "center", bottom: 28 }}
           onPress={() => this.props.navigation.navigate("FacialExpression")}
         >
           <View style={styles.button}>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     height: "85%"
   },
   overlay: {
-    backgroundColor: "#011300",
+    backgroundColor: "#010a00",
     width: "100%",
     height: "100%",
     alignContent: "center"
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     borderColor: "white",
     borderWidth: 2,
-    padding: 10,
+    paddingVertical: 12,
     width: "60%"
   }
 });
