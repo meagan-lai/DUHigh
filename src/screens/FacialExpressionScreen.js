@@ -54,7 +54,17 @@ export default class FacialExpressionScreen extends React.Component {
     );
   }
 
+  passBlob(blob) {
+    this.props.navigation.navigate("Pupil");
+    console.log(blob);
+    //Pass blob to API
+  }
+
   renderImage() {
+    let blob = "";
+    RNFS.readFile(this.state.imageUri, "base64").then(
+      result => (blob = result)
+    );
     return (
       <View>
         <Image source={{ uri: this.state.imageUri }} style={styles.preview} />
@@ -64,10 +74,7 @@ export default class FacialExpressionScreen extends React.Component {
         >
           Cancel
         </Text>
-        <Text
-          style={styles.next}
-          onPress={() => this.props.navigation.navigate("Pupil")}
-        >
+        <Text style={styles.next} onPress={() => this.passBlob(blob)}>
           Next
         </Text>
       </View>
