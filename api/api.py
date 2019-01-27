@@ -58,7 +58,7 @@ def facialExpressionTest():
                 print(e)
 
     # request.method == 'GET'
-    return
+    return "err"
 
 
 @app.route("/pupil1", methods=['POST'])
@@ -105,7 +105,7 @@ def pupilSize1Test():
                 print(e)
                 return "error"
 
-    return
+    return "err"
 
 
 @app.route("/pupil2", methods=['POST'])
@@ -153,16 +153,17 @@ def pupilSize2Test():
                 return "error"
 
     # request.method == 'GET'
-    return
+    return "err"
 
 
 @app.route("/results", methods=['GET'])
 def results():
     test1 = test1Output
     test2 = calcPupilChange(pupilSize1, pupilSize2)
-
+    output = {}
+    output["chanceOfHigh"] = test1+test2
+    return json.dumps(output)
     # test 3 is gotten through node.js api
-    return test1+test2
 
 
 def calcPupilChange(p1, p2):
