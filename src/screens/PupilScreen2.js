@@ -64,6 +64,8 @@ export default class PupilScreen2 extends React.Component {
     }
   }
   passBlob(blob) {
+    this.props.navigation.navigate("BalanceInstructions");
+
     //Pass blob to API
     axios({
       method: "post",
@@ -81,7 +83,6 @@ export default class PupilScreen2 extends React.Component {
       .catch(error => {
         console.log(error);
       });
-    this.props.navigation.navigate("BalanceInstructions");
   }
   renderImage() {
     let blob = "";
@@ -139,8 +140,8 @@ const styles = StyleSheet.create({
 
   cancel: {
     position: "absolute",
-    left: 20,
-    top: 20,
+    left: 30,
+    bottom: 30,
     backgroundColor: "transparent",
     color: "#FFF",
     fontWeight: "600",
@@ -149,8 +150,8 @@ const styles = StyleSheet.create({
 
   next: {
     position: "absolute",
-    right: 20,
-    bottom: 0,
+    right: 30,
+    bottom: 30,
     backgroundColor: "transparent",
     color: "#FFF",
     fontWeight: "600",

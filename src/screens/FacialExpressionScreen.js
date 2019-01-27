@@ -66,7 +66,6 @@ export default class FacialExpressionScreen extends React.Component {
 
   passBlob(blob) {
     this.props.navigation.navigate("PupilInstructions");
-    console.log(blob);
     //Pass blob to API
     axios({
       method: "post",

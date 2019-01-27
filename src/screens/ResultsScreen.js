@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { navigationOptions } from "react-navigation";
 import axios from "react-native-axios";
 
@@ -32,14 +32,44 @@ export default class ResultsScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text style={{ color: "white", fontSize: 40 }}>
-          Chance of Intoxication: {this.state.chanceOfHigh}%
-        </Text>
-        <Button
-          title="Try Again"
+        <View style={{ bottom: 30 }}>
+          <Text style={{ textAlign: "center", color: "white", fontSize: 40 }}>
+            Chance of Intoxication:
+          </Text>
+          <Text style={{ textAlign: "center", color: "red", fontSize: 90 }}>
+            {this.state.chanceOfHigh}%
+          </Text>
+        </View>
+        <TouchableOpacity
+          style={{
+            position: "absolute",
+            alignItems: "center",
+            bottom: 150,
+            width: "60%"
+          }}
           onPress={() => this.props.navigation.navigate("Home")}
-        />
+        >
+          <View style={styles.button}>
+            <Text style={styles.text}>Try Again</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  text: {
+    textAlign: "center",
+    color: "white",
+    fontSize: 25
+  },
+
+  button: {
+    backgroundColor: "transparent",
+    borderColor: "white",
+    borderWidth: 2,
+    paddingVertical: 12,
+    width: "60%"
+  }
+});

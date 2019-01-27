@@ -62,6 +62,9 @@
 		E4851622C6D746D5A22B8B64 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B873734F4141464DB30A2203 /* FontAwesome5_Solid.ttf */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
+		B2319E9393A548E39687F157 /* Barlow Condensed SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39BCF0F5F6B34B6993613F21 /* Barlow Condensed SemiBold.ttf */; };
+		9D54228696F248AA997994E8 /* Barlow Condensed Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1BB24D8C85674B6B85627269 /* Barlow Condensed Medium.ttf */; };
+		6D8F585194D94AE88D36CD5B /* Barlow Condensed Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB4DC43B560A4C33A91C4D9B /* Barlow Condensed Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -469,6 +472,9 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FD9673C9B6614EBF8189C28C /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
+		39BCF0F5F6B34B6993613F21 /* Barlow Condensed SemiBold.ttf */ = {isa = PBXFileReference; name = "Barlow Condensed SemiBold.ttf"; path = "../assets/fonts/Barlow Condensed SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1BB24D8C85674B6B85627269 /* Barlow Condensed Medium.ttf */ = {isa = PBXFileReference; name = "Barlow Condensed Medium.ttf"; path = "../assets/fonts/Barlow Condensed Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CB4DC43B560A4C33A91C4D9B /* Barlow Condensed Regular.ttf */ = {isa = PBXFileReference; name = "Barlow Condensed Regular.ttf"; path = "../assets/fonts/Barlow Condensed Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -842,6 +848,9 @@
 				AA72F363567C4193AC8168EF /* Octicons.ttf */,
 				B88AB1B042B5422EAB276C8A /* SimpleLineIcons.ttf */,
 				AC3F8C96409C4F18A244F807 /* Zocial.ttf */,
+				39BCF0F5F6B34B6993613F21 /* Barlow Condensed SemiBold.ttf */,
+				1BB24D8C85674B6B85627269 /* Barlow Condensed Medium.ttf */,
+				CB4DC43B560A4C33A91C4D9B /* Barlow Condensed Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1411,6 +1420,9 @@
 				DEE7D1C1060E4634A5B0622E /* Octicons.ttf in Resources */,
 				5BC4D82773624452B8661F6E /* SimpleLineIcons.ttf in Resources */,
 				1D5376E789064F47BEF204E8 /* Zocial.ttf in Resources */,
+				B2319E9393A548E39687F157 /* Barlow Condensed SemiBold.ttf in Resources */,
+				9D54228696F248AA997994E8 /* Barlow Condensed Medium.ttf in Resources */,
+				6D8F585194D94AE88D36CD5B /* Barlow Condensed Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

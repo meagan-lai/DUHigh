@@ -86,7 +86,7 @@ export default class BalanceScreen extends React.Component {
               {
                 flex: 0.3,
                 alignSelf: "flex-end",
-                backgroundColor: this.state.isRecording ? "white" : "darkred"
+                backgroundColor: this.state.isRecording ? "grey" : "#d32121"
               }
             ]}
             onPress={
@@ -108,10 +108,19 @@ export default class BalanceScreen extends React.Component {
     return (
       <View style={styles.container}>
         {this.renderCamera()}
-        <Button
-          title="Get Results!"
+        <TouchableOpacity
+          style={{
+            alignItems: "center",
+            bottom: 28,
+            marginBottom: -10,
+            marginTop: 50
+          }}
           onPress={() => this.props.navigation.navigate("Results")}
-        />
+        >
+          <View style={styles.button}>
+            <Text style={styles.text}>Get Results!</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -138,7 +147,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 20,
     borderRadius: 8,
-    borderColor: "white",
+    borderColor: "#d32121",
     borderWidth: 1,
     padding: 5,
     alignItems: "center",
@@ -194,5 +203,10 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row"
+  },
+  text: {
+    textAlign: "center",
+    color: "white",
+    fontSize: 25
   }
 });
