@@ -11,7 +11,7 @@ import {
 import { navigationOptions } from "react-navigation";
 import { RNCamera } from "react-native-camera";
 
-export default class FacialExpressionScreen extends React.Component {
+export default class PupilScreen extends React.Component {
   static navigationOptions = {
     headerLeft: null
   };
@@ -32,29 +32,34 @@ export default class FacialExpressionScreen extends React.Component {
   };
 
   renderCamera() {
-    return (
-      <RNCamera
-        ref={ref => {
-          this.camera = ref;
-        }}
-        style={styles.preview}
-        type={RNCamera.Constants.Type.back}
-        flashMode={RNCamera.Constants.FlashMode.off}
-        permissionDialogTitle={"Permission to use camera"}
-        permissionDialogMessage={
-          "We need your permission to use your camera phone"
-        }
-      >
-        <View
-          style={{ flex: 0, flexDirection: "row", justifyContent: "center" }}
+    const isFocused = this.props.navigation.isFocused();
+    if (isFocused) {
+      return (
+        <RNCamera
+          ref={ref => {
+            this.camera = ref;
+          }}
+          style={styles.preview}
+          type={RNCamera.Constants.Type.back}
+          flashMode={RNCamera.Constants.FlashMode.off}
+          permissionDialogTitle={"Permission to use camera"}
+          permissionDialogMessage={
+            "We need your permission to use your camera phone"
+          }
         >
-          <TouchableOpacity
-            onPress={this.takePicture.bind(this)}
-            style={styles.capture}
-          />
-        </View>
-      </RNCamera>
-    );
+          <View
+            style={{ flex: 0, flexDirection: "row", justifyContent: "center" }}
+          >
+            <TouchableOpacity
+              onPress={this.takePicture.bind(this)}
+              style={styles.capture}
+            />
+          </View>
+        </RNCamera>
+      );
+    } else {
+      return null;
+    }
   }
 
   renderImage() {
@@ -69,7 +74,7 @@ export default class FacialExpressionScreen extends React.Component {
         </Text>
         <Text
           style={styles.next}
-          onPress={() => this.props.navigation.navigate("Balance")}
+          onPress={() => this.props.navigation.navigate("Test")}
         >
           Next
         </Text>
@@ -83,7 +88,7 @@ export default class FacialExpressionScreen extends React.Component {
         {this.state.imageUri ? this.renderImage() : this.renderCamera()}
         <Text>Pupil Screen</Text>
         <Button
-          title="Go to Balance Screen"
+          title="Go to Test Screen"
           onPress={() => this.props.navigation.navigate("Balance")}
         />
       </View>

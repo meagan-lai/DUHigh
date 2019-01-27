@@ -10,6 +10,7 @@ import FacialExpressionScreen from "./src/screens/FacialExpressionScreen";
 import PupilScreen from "./src/screens/PupilScreen";
 import BalanceScreen from "./src/screens/BalanceScreen";
 import ResultsScreen from "./src/screens/ResultsScreen";
+import TestScreen from "./src/screens/TestScreen";
 
 const RootStack = createStackNavigator(
   {
@@ -17,7 +18,8 @@ const RootStack = createStackNavigator(
     FacialExpression: FacialExpressionScreen,
     Pupil: PupilScreen,
     Balance: BalanceScreen,
-    Results: ResultsScreen
+    Results: ResultsScreen,
+    Test: TestScreen
   },
   {
     initialRouteName: "Home"

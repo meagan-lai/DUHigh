@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Slider } from "react-native";
 import { RNCamera } from "react-native-camera";
 
 const landmarkSize = 2;
@@ -20,7 +20,7 @@ const wbOrder = {
   incandescent: "auto"
 };
 
-export default class BalanceScreen extends React.Component {
+export default class CameraScreen extends React.Component {
   state = {
     flash: "off",
 
@@ -122,15 +122,7 @@ export default class BalanceScreen extends React.Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        {this.renderCamera()}
-        <Button
-          title="Balance"
-          onPress={() => this.props.navigation.navigate("Results")}
-        />
-      </View>
-    );
+    return <View style={styles.container}>{this.renderCamera()}</View>;
   }
 }
 
