@@ -1,10 +1,6 @@
 import React from "react";
 import { Button, View, Text } from "react-native";
-import {
-  createStackNavigator,
-  createAppContainer,
-  navigationOptions
-} from "react-navigation"; // Version can be specified in package.json
+import { createSwitchNavigator, createAppContainer } from "react-navigation"; // Version can be specified in package.json
 import HomeScreen from "./src/screens/HomeScreen";
 import FacialExpressionScreen from "./src/screens/FacialExpressionScreen";
 import PupilScreen from "./src/screens/PupilScreen";
@@ -12,7 +8,7 @@ import BalanceScreen from "./src/screens/BalanceScreen";
 import ResultsScreen from "./src/screens/ResultsScreen";
 import TestScreen from "./src/screens/TestScreen";
 
-const RootStack = createStackNavigator(
+const RootStack = createSwitchNavigator(
   {
     Home: HomeScreen,
     FacialExpression: FacialExpressionScreen,

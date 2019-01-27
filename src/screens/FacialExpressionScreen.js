@@ -1,3 +1,4 @@
+import axios from "react-native-axios";
 import React from "react";
 import {
   Button,
@@ -67,6 +68,22 @@ export default class FacialExpressionScreen extends React.Component {
     this.props.navigation.navigate("Pupil");
     console.log(blob);
     //Pass blob to API
+    axios({
+      method: "post",
+      url: "http://ryannourbaran.pythonanywhere.com/face",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": true,
+        "Content-Type": "application/octet-stream"
+      },
+      data: blob
+    })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   renderImage() {
@@ -140,7 +157,7 @@ const styles = StyleSheet.create({
   next: {
     position: "absolute",
     right: 20,
-    top: 20,
+    bottom: 0,
     backgroundColor: "transparent",
     color: "#FFF",
     fontWeight: "600",

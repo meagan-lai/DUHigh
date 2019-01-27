@@ -9,6 +9,7 @@
   "dependencies": {
     "react": "16.6.3",
     "react-native": "0.58.1",
+    "react-native-axios": "^0.17.1",
     "react-native-beautiful-video-recorder": "^1.2.0",
     "react-native-camera": "^1.9.2",
     "react-native-camera-ios": "^2.0.0",
