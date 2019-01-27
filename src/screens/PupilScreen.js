@@ -89,7 +89,10 @@ export default class PupilScreen extends React.Component {
       <View style={styles.container}>
         {this.state.imageUri ? this.renderImage() : this.renderCamera()}
         <Text>Pupil Screen</Text>
-        <Button title="Go to Balance Screen" onPress={() => this.props.navigation.navigate("Pupil2")} />
+        <Button
+          title="Go to pupil with flash Screen"
+          onPress={() => this.props.navigation.navigate("Pupil2")}
+        />
       </View>
     );
   }
