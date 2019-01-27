@@ -4,7 +4,8 @@ import {
   View,
   Text,
   StyleSheet,
-  ImageBackground
+  ImageBackground,
+  Image
 } from "react-native";
 
 export default class HomeScreen extends React.Component {
@@ -14,7 +15,11 @@ export default class HomeScreen extends React.Component {
         source={require("./Picture1.png")}
         style={styles.backgroundImage}
       >
-        <Text style={styles.title}>D.U.High</Text>
+        <Image
+          source={require("./Logo.png")}
+          style={{ width: 250, top: 150 }}
+          resizeMode="contain"
+        />
       </ImageBackground>
     );
   }
@@ -47,7 +52,8 @@ const styles = StyleSheet.create({
     fontSize: 25
   },
   backgroundImage: {
-    height: "85%"
+    height: "85%",
+    alignItems: "center"
   },
   overlay: {
     backgroundColor: "#010a00",
