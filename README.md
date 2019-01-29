@@ -46,3 +46,6 @@ We learned how to connect mobile applications to custom built REST APIs, to host
 We wish to integrated D.U.High in real law enforcement sobriety tests, in order to both improve the machine learning model, and to make sure that the roads are safer from intoxicated drivers. We would also like to develop more tests, including speech analytics and dexterity tests. With more data in our model, we hope to one day make D.U.High an accurate testing tool for law enforcement. 
 
  
+### Contributors: ###
+* [Ryan Nourbaran](https://github.com/RyanNourbaran)
+* [Meagan Lai](https://github.com/meagan-lai)
