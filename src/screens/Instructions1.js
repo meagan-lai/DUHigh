@@ -8,8 +8,7 @@ export default class Instructions1 extends React.Component {
         <Text style={styles.header}>1. Facial Expression</Text>
         <Text style={styles.instructions}>
           Take a photo of the subject's face. Make sure to capture the eyes
-          clearly.
-        </Text>
+git add        </Text>
         <TouchableOpacity
           style={{ position: "absolute", alignItems: "center", bottom: 100 }}
           onPress={() => this.props.navigation.navigate("FacialExpression")}
