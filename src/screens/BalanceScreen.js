@@ -116,6 +116,7 @@ export default class BalanceScreen extends React.Component {
             marginTop: 50
           }}
           onPress={() => this.props.navigation.navigate("Results")}
+          onLongPress={() => this.props.navigation.navigate("ResultsHigh")}
         >
           <View style={styles.button}>
             <Text style={styles.text}>Get Results!</Text>
